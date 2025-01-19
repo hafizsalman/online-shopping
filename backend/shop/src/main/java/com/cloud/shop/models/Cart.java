@@ -24,7 +24,7 @@ public class Cart {
     private Integer quantity;
 
     @Column(name = "status", nullable = false, length = 20)
-    private String status; // Active, CheckedOut, or Abandoned
+    private String status; // Active, CheckedOut, or Abandoned TODO: Use Enum
 
     @Column(name = "added_at", nullable = false, updatable = false)
     private LocalDateTime addedAt;
@@ -33,8 +33,5 @@ public class Cart {
     protected void onCreate() {
         addedAt = LocalDateTime.now();
     }
-
-    // Getters and Setters
-    // ...
 }
 

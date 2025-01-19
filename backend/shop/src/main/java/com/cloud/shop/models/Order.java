@@ -31,7 +31,7 @@ public class Order {
     private Double totalAmount;
 
     @Column(name = "order_status", nullable = false)
-    private String orderStatus; // ENUM can be used for better type safety
+    private String orderStatus; //TODO: ENUM can be used for better type safety, ENUM('Pending', 'Completed', 'Cancelled')
 
     @Setter
     @Getter

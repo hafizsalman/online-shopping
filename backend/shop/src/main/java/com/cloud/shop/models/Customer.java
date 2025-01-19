@@ -50,8 +50,5 @@ public class Customer {
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
-
-    // Getters and Setters
-    // ...
 }
 

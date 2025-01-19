@@ -1,6 +1,8 @@
 package com.cloud.shop.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,9 +32,17 @@ public class Product {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
+    @Setter
+    @Getter
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImage> images = new ArrayList<>();
 
@@ -48,22 +58,15 @@ public class Product {
         updatedAt = LocalDateTime.now();
     }
 
-    public List<ProductImage> getImages() {
-        return images;
-    }
-
-    public void setImages(List<ProductImage> images) {
-        this.images = images;
-    }
-
     public void addImage(ProductImage image) {
         images.add(image);
-        image.setProduct(this);
+//        image.setProduct(this);
     }
 
     public void removeImage(ProductImage image) {
         images.remove(image);
-        image.setProduct(null);
+//        image.setProduct(this);
     }
+
 }
 

@@ -24,7 +24,7 @@ public class Payment {
     @Setter
     @Getter
     @Column(name = "payment_method", nullable = false, length = 50)
-    private String paymentMethod;
+    private String paymentMethod; //TODO: Use ENUM ENUM('Credit Card', 'PayPal', 'Stripe', 'Mock')
 
     @Setter
     @Getter

@@ -61,4 +61,5 @@ public class ProductImage {
     protected void onCreate() {
         addedAt = LocalDateTime.now();
     }
+
 }

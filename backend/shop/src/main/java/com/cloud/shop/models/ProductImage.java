@@ -1,6 +1,8 @@
 package com.cloud.shop.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -8,21 +10,30 @@ import java.time.LocalDateTime;
 @Table(name = "product_image")
 public class ProductImage {
 
+    // Getters and Setters
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
     private Long imageId;
 
+    @Setter
+    @Getter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    @Setter
+    @Getter
     @Column(name = "image_url", nullable = false, length = 255)
     private String imageUrl;
 
     @Column(name = "is_primary", nullable = false)
     private boolean isPrimary;
 
+    @Setter
+    @Getter
     @Column(name = "added_at", nullable = false, updatable = false)
     private LocalDateTime addedAt;
 
@@ -37,45 +48,12 @@ public class ProductImage {
         this.addedAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
-    public Long getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(Long imageId) {
-        this.imageId = imageId;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public boolean isPrimary() {
         return isPrimary;
     }
 
     public void setPrimary(boolean primary) {
         isPrimary = primary;
-    }
-
-    public LocalDateTime getAddedAt() {
-        return addedAt;
-    }
-
-    public void setAddedAt(LocalDateTime addedAt) {
-        this.addedAt = addedAt;
     }
 
     // Lifecycle Hook

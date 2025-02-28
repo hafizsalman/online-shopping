@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
-@Table(name = "product_image")
+@Table(name="images_url")
 public class ProductImage {
 
     @Id
@@ -19,17 +19,11 @@ public class ProductImage {
     @Column(name = "image_id")
     private Long imageId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    private Long productId;
 
     @Column(name = "image_url", length = 255)
     private String imageUrl; // Optional: Used for external URLs.
 
-    @Lob
-    @Column(name = "image_data", columnDefinition = "BYTEA") // Use BYTEA for PostgreSQL
-    private byte[] imageData;
-    
     @Column(name = "is_primary", nullable = false)
     private boolean isPrimary;
 
@@ -39,10 +33,9 @@ public class ProductImage {
     // Constructors
     public ProductImage() {}
 
-    public ProductImage(Product product, String imageUrl, byte[] imageData, boolean isPrimary) {
-        this.product = product;
+    public ProductImage(Long product, String imageUrl, boolean isPrimary) {
+        this.productId = product;
         this.imageUrl = imageUrl;
-        this.imageData = imageData;
         this.isPrimary = isPrimary;
         this.addedAt = LocalDateTime.now();
     }
@@ -51,5 +44,45 @@ public class ProductImage {
     @PrePersist
     protected void onCreate() {
         addedAt = LocalDateTime.now();
+    }
+
+    public Long getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public boolean isPrimary() {
+        return isPrimary;
+    }
+
+    public void setPrimary(boolean primary) {
+        isPrimary = primary;
+    }
+
+    public LocalDateTime getAddedAt() {
+        return addedAt;
+    }
+
+    public void setAddedAt(LocalDateTime addedAt) {
+        this.addedAt = addedAt;
     }
 }

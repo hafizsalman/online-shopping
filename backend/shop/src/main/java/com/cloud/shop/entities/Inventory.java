@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Data
 @Getter
 @Setter
@@ -17,7 +19,7 @@ public class Inventory {
     @Column(name = "inventory_id")
     private Long inventoryId;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
@@ -30,5 +32,44 @@ public class Inventory {
     @Column(name = "restock_date")
     private java.time.LocalDate restockDate;
 
+    public Long getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(Long inventoryId) {
+        this.inventoryId = inventoryId;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Integer getRestockThreshold() {
+        return restockThreshold;
+    }
+
+    public void setRestockThreshold(Integer restockThreshold) {
+        this.restockThreshold = restockThreshold;
+    }
+
+    public LocalDate getRestockDate() {
+        return restockDate;
+    }
+
+    public void setRestockDate(LocalDate restockDate) {
+        this.restockDate = restockDate;
+    }
 }
 
